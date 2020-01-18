@@ -16,3 +16,11 @@ class Account(db.Model):
     current_hold = db.Column(db.Integer(), default=0)
     bank_account_status = db.Column(db.Boolean(), nullable=False)
     created_at = db.Column(db.DateTime(), default=datetime.now)
+
+    @property
+    def get_current_balance(self):
+        return self.current_balance / 100
+
+    @property
+    def get_current_hold(self):
+        return self.current_hold / 100
