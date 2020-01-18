@@ -8,7 +8,8 @@ db = Gino()
 class Account(db.Model):
     __tablename__ = "accounts"
 
-    uuid = db.Column(db.UUID(as_uuid=True), unique=True, nullable=False)
+    uuid = db.Column(db.UUID(as_uuid=True), unique=True, nullable=False,
+                     primary_key=True)
     last_name = db.Column(db.Unicode(256), nullable=False)
     first_name = db.Column(db.Unicode(256), nullable=False)
     middle_name = db.Column(db.Unicode(256), nullable=True)
