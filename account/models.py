@@ -24,3 +24,7 @@ class Account(db.Model):
     @property
     def get_current_hold(self):
         return self.current_hold / 100
+
+    @property
+    def is_active(self):
+        return self.bank_account_status
