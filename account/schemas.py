@@ -30,7 +30,7 @@ class RequestSchema(Schema):
                                       "Format must be like 19.99")
 
     @post_load()
-    def convert_amount_to_int(self, data, *args, **kwargs):
+    def convert_amount_to_int(self, data: dict, *args, **kwargs) -> dict:
         data["amount"] = int(data["amount"] * 100)
         return data
 

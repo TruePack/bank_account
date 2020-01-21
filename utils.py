@@ -17,7 +17,7 @@ def response(*, status: int, result: bool, addition: Optional[dict]=None,
     return web.json_response(status=status, data=data, dumps=pretty_json)
 
 
-def not_found(model: str):
+def not_found(model: str) -> web.Response:
     return response(status=web.HTTPNotFound.status_code, result=False,
                     addition={"error": "Not found"},
                     description=f"{model} not found")

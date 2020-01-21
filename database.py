@@ -5,7 +5,7 @@ class Gino(Gino_):
     __instance = None
 
     @staticmethod
-    def init():
+    def init() -> Gino_:
         if Gino.__instance is None:
             Gino.__instance = Gino_()
         return Gino.__instance

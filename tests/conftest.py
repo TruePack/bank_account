@@ -10,7 +10,7 @@ from database import Gino
 from ping.routes import routes as ping_routes
 
 
-def create_app():
+def create_app() -> web.Application:
     app = web.Application()
     db = Gino.init()
     host = "postgres"
