@@ -1,0 +1,8 @@
+database:
+  user: "postgres"
+  database: "gino"
+  host: "postgres"
+  hold_update_time: 600
+app:
+  host: "0.0.0.0"
+  port: 5000
