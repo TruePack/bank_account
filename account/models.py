@@ -21,8 +21,14 @@ class Account(db.Model):
     bank_account_status = db.Column(db.Boolean(), nullable=False)
     created_at = db.Column(db.DateTime(), default=datetime.now)
 
+    def __init__(self, *args, **kwargs):
+        super(Account, self).__init__(*args, **kwargs)
+        self.raw_balance = False
+
     @property
     def current_balance(self) -> int:
+        if self.raw_balance:
+            return self.balance
         return self.balance - self.hold
 
     @property

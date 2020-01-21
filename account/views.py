@@ -24,7 +24,7 @@ async def status(request):
         return bad_response
     raw_balance = request["querystring"]["raw_balance"]
     if raw_balance:
-        setattr(acc, "current_balance", acc.balance)
+        acc.raw_balance = True
     return response(status=HTTPOk.status_code, result=True,
                     addition=ResponseSchema().dump(acc))
 

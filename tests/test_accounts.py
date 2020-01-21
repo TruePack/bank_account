@@ -28,6 +28,27 @@ class TestAccount:
                          'last_name': 'Петров'},
             'description': {}}
 
+    async def test_account_status_with_raw_balance(self, client, db_data):
+
+        url = url_for(client, "status",
+                      resource_kwargs={"account_uuid": ACC1_UUID,
+                                       "raw_balance": 'true'})
+        url_raw_balance = url.with_query(raw_balance='true')
+        resp = await client.get(url_raw_balance)
+        resp_data = await resp.json()
+
+        assert resp.status == 200
+        assert resp_data == {
+            'status': 200,
+            'result': True,
+            'addition': {'uuid': '26c940a1-7228-4ea2-a3bc-e6460b172040',
+                         'first_name': 'Иван',
+                         'status': True,
+                         'middle_name': 'Сергеевич',
+                         'balance': 1700.0,
+                         'last_name': 'Петров'},
+            'description': {}}
+
     async def test_not_found_account_status(self, client, db_data):
         url = url_for(client, "status",
                       resource_kwargs={"account_uuid": f"{uuid4()}"})

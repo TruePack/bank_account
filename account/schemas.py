@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields, post_load
+from marshmallow import Schema, fields, post_load, pre_dump
 
 from account.models import Account
 from account.validators import validate_amount
@@ -15,15 +15,13 @@ class ResponseSchema(Schema):
     last_name = fields.Str()
     first_name = fields.Str()
     middle_name = fields.Str(allow_none=True)
-    balance = fields.Method("get_balance")
+    balance = fields.Float()
     status = fields.Bool(attribute="bank_account_status")
 
-    @staticmethod
-    def get_balance(account: Account) -> str:
-        balance = account.current_balance
-        if isinstance(balance, int):
-            return balance/100
-        return balance
+    @pre_dump
+    def get_balance(self, account: Account, **kwargs) -> Account:
+        account.balance = account.current_balance / 100
+        return account
 
 
 class RequestSchema(Schema):
