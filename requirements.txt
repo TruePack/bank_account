@@ -1,0 +1,8 @@
+aiohttp
+aiohttp_apispec
+gino
+psycopg2-binary
+pyyaml
+pytest
+pytest-aiohttp
+sqlalchemy-utils
